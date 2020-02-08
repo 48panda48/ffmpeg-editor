@@ -5,6 +5,7 @@ IF [%1]==[remove] GOTO remove
 IF [%1]==[sync] GOTO sync
 IF [%1]==[replacesync] GOTO replacesync
 IF [%1]==[replace] GOTO replace
+IF [%1]==[overlay] GOTO overlay
 IF [%1]==[help] GOTO help
 echo No Valid command %1. do "edit help" to get a list of commands.
 GOTO end
@@ -24,8 +25,12 @@ GOTO end
 "edit\replace.bat" "%~f2" "%~f3" %4 %5 "%~f6"
 GOTO end
 :replace
-"edit\replacepro.bat" "%~f2" %3 %4 "%~f5" " %~f6"
+"edit\replacepro.bat" "%~f2" %3 %4 "%~f5" "%~f6"
 GOTO end
+:overlay
+"edit\overlay.bat" "%~f2" "%~f3" %4 %5 %6 "%~f7"
+GOTO end
+:chromakey
 :help
 IF [%2]==[cut] GOTO cuthelp
 IF [%2]==[combine] GOTO combinehelp
