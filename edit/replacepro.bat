@@ -8,17 +8,17 @@ GOTO end
 :main
 python dist.py %2 %3> temp.txt
 set /p OUT=<temp.txt
-ffmpeg -ss 00:00:00 -t %2 -i "%~f1" -acodec copy -vcodec copy temp1.mp4
-ffmpeg -ss %5 -t %OUT% -i "%~f4" -acodec copy -vcodec copy temp2.mp4
-ffmpeg -ss %3 -i "%~f1" -acodec copy -vcodec copy temp3.mp4
+ffmpeg -ss 00:00:00 -t %2 -i "%~f1" -acodec copy -vcodec copy temp1.ts
+ffmpeg -ss %5 -t %OUT% -i "%~f4" -acodec copy -vcodec copy temp2.ts
+ffmpeg -ss %3 -i "%~f1" -acodec copy -vcodec copy temp3.ts
 copy NUL concat.txt
-@echo file '%~dp1temp1.mp4' >concat.txt
-@echo file '%~dp1temp2.mp4' >>concat.txt
-@echo file '%~dp1temp3.mp4' >>concat.txt
+@echo file '%~dp1temp1.ts' >concat.txt
+@echo file '%~dp1temp2.ts' >>concat.txt
+@echo file '%~dp1temp3.ts' >>concat.txt
 ffmpeg -f concat -safe 0 -i concat.txt -c copy "%~f6"
-del temp1.mp4
-del temp2.mp4
-del temp3.mp4
+del temp1.ts
+del temp2.ts
+del temp3.ts
 :end
 GOTO end2
 :end2
